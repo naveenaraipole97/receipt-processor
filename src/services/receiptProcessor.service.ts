@@ -1,3 +1,5 @@
+import { ReceiptItem } from '../interfaces/receipt.interface'
+
 export class ReceiptProcessorService{
     countAlphanumericCharacters(input: string): number {
         const alphanumericRegex = /^[a-z0-9]+$/i;
@@ -9,31 +11,33 @@ export class ReceiptProcessorService{
         }
         return count;
     }
-    isRoundDollarAmount(amount: number): boolean {
-        return Number.isInteger(amount);
+    isRoundDollarAmount(amount: string): boolean {
+        return Number.isInteger(parseFloat(amount));
     }
-    isMultipleOfQuarter(amount: number): boolean {
-        return amount % 0.25 === 0;
+    isMultipleOfQuarter(amount: string): boolean {
+        return parseFloat(amount) % 0.25 === 0;
     }
     pointsForItemsNumber(itemsLength: number): number {
-        return itemsLength / 2
+        return Math.floor(itemsLength / 2) * 5;
     }
-    pointsForItemsDescription(items: any[]): number {
-        let points = 0
+    pointsForItemsDescription(items: ReceiptItem[]): number {
+        let points = 0;
         items.forEach(item => {
             if(item["shortDescription"] && item["price"]){
-                if(item["shortDescription"].trim()%3===0){
-                    points+=Math.ceil(item["price"]*0.2)
+                if(item["shortDescription"].trim().length % 3 === 0){
+                    points += Math.ceil(parseFloat(item["price"]) * 0.2);
                 }
             }
         })
-        return points
+        return points;
     }
     pointsForPurchaseDate(dateString: string): number{
         const dateObject = new Date(dateString);
-        const day = dateObject.getDate();
-        if(day%2===1) return 6
-        return 0
+        if(isNaN(dateObject.getTime())) return 0;
+        const date = dateObject.toISOString().split('T')[0];
+        const day = parseInt(date.split('-')[2]);
+        if(day%2===1) return 6;
+        return 0;
     }
     isTimeBetween2And4pm(timeStr: string): boolean {
         // Extract hours and minutes from the time string
@@ -44,7 +48,7 @@ export class ReceiptProcessorService{
         // Check if the time is after 2 PM (14:00) and before 4 PM (16:00)
         if (hours > 14 && hours < 16) {
             return true;
-        } else if (hours === 14 && minutes >= 0) {
+        } else if (hours === 14 && minutes > 0) {
             return true;
         } else if (hours === 15 && minutes < 60) {
             return true;

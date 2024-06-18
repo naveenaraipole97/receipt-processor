@@ -3,10 +3,9 @@
   "version": "1.0.0",
   "description": "Receipt Processor",
   "main": "dist/controllers/receiptProcessor.controller.js",
-  "type": "module",
   "scripts": {
     "build": "tsc",
-    "start": "node dist/controllers/receiptProcessor.controller.js",
+    "start": "tsc && node dist/controllers/receiptProcessor.controller.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +30,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
-    "@types/node": "^20.14.2"
+    "@types/node": "^20.14.2",
+    "@types/uuid": "^9.0.8",
+    "uuid": "^10.0.0"
   }
 }
