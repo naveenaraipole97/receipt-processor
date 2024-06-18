@@ -28,15 +28,15 @@ The application should now be running on localhost:3000. You can test the applic
 
 ### Process Receipts
 
-Path: /receipts/process
-Method: POST
-Payload: Receipt JSON
-Response: JSON containing an id for the receipt.
+* Path: `/receipts/process`
+* Method: `POST`
+* Payload: Receipt JSON
+* Response: JSON containing an id for the receipt.
 
 ### Get Points
 
-Path: /receipts/{id}/points
-Method: GET
-Response: A JSON object containing the number of points awarded.
+* Path: `/receipts/{id}/points`
+* Method: `GET`
+* Response: A JSON object containing the number of points awarded.
 
 You can use tools like Postman or a web browser to interact with these endpoints on localhost:3000.
