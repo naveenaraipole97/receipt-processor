@@ -6,7 +6,7 @@
   "scripts": {
     "build": "tsc",
     "start": "tsc && node dist/controllers/receiptProcessor.controller.js",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "test": "ts-mocha test/**/*.ts"
   },
   "repository": {
     "type": "git",
@@ -30,6 +30,8 @@
     "typescript": "^5.4.5"
   },
   "devDependencies": {
+    "@types/chai": "^4.3.16",
+    "@types/mocha": "^10.0.6",
     "@types/node": "^20.14.2",
     "@types/uuid": "^9.0.8",
     "uuid": "^10.0.0"

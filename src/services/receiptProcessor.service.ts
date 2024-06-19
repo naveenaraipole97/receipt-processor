@@ -1,6 +1,7 @@
 import { ReceiptItem } from '../interfaces/receipt.interface'
 
 export class ReceiptProcessorService{
+    //Function to count alpha numeric characters in the input
     countAlphanumericCharacters(input: string): number {
         const alphanumericRegex = /^[a-z0-9]+$/i;
         let count = 0;
@@ -11,15 +12,23 @@ export class ReceiptProcessorService{
         }
         return count;
     }
+
+    //Function to check if input is a round dollar amount
     isRoundDollarAmount(amount: string): boolean {
         return Number.isInteger(parseFloat(amount));
     }
+
+    //Function to check if input is a multiple of quarter
     isMultipleOfQuarter(amount: string): boolean {
         return parseFloat(amount) % 0.25 === 0;
     }
+
+    //Function to calculate points based on number of items
     pointsForItemsNumber(itemsLength: number): number {
         return Math.floor(itemsLength / 2) * 5;
     }
+
+    //Function to calculate points based on item description for all items
     pointsForItemsDescription(items: ReceiptItem[]): number {
         let points = 0;
         items.forEach(item => {
@@ -31,6 +40,8 @@ export class ReceiptProcessorService{
         })
         return points;
     }
+
+    //Function to calculate points based on purchase date
     pointsForPurchaseDate(dateString: string): number{
         const dateObject = new Date(dateString);
         if(isNaN(dateObject.getTime())) return 0;
@@ -39,13 +50,13 @@ export class ReceiptProcessorService{
         if(day%2===1) return 6;
         return 0;
     }
+
+    //Function to check if time is after 2 PM (14:00) and before 4 PM (16:00)
     isTimeBetween2And4pm(timeStr: string): boolean {
-        // Extract hours and minutes from the time string
         const [hoursStr, minutesStr] = timeStr.split(':');
         const hours = parseInt(hoursStr, 10);
         const minutes = parseInt(minutesStr, 10);
     
-        // Check if the time is after 2 PM (14:00) and before 4 PM (16:00)
         if (hours > 14 && hours < 16) {
             return true;
         } else if (hours === 14 && minutes > 0) {
@@ -56,10 +67,14 @@ export class ReceiptProcessorService{
             return false;
         }
     }    
+
+    //Function to calculate points based on purchase time
     pointsForPurchaseTime(timeStr: string): number{
         if(this.isTimeBetween2And4pm(timeStr)) return 10
         return 0
     }
+
+    //Function to calculate overall points for the receipt
     calculatePoints(req: any): number{
        let points = 0;
        if(req["retailer"]) points += this.countAlphanumericCharacters(req["retailer"])

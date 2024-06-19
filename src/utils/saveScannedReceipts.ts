@@ -1,8 +1,8 @@
-import { Receipt } from '../interfaces/receipt.interface'
+import { ReceiptDetails } from '../interfaces/receipt.interface'
 
 export class Receipts{
     scannedReceipts: any = {}
-    saveScannedReceipts(receiptDetails: Receipt){
+    saveScannedReceipts(receiptDetails: ReceiptDetails){
         this.scannedReceipts[receiptDetails['id']]=receiptDetails['points']
     }
 }
