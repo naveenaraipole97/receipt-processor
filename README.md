@@ -1,3 +1,6 @@
+## Technologies Used
+Application is written in [Typescript](https://www.typescriptlang.org/) with [Node.js](https://nodejs.org/en) as runtime using [Express.js](https://expressjs.com/) framework and containerized using [Docker](https://www.docker.com/)
+
 ## How to run locally
 
 1. Clone the repository: `git clone https://github.com/naveenaraipole97/receipt-processor.git`
@@ -6,6 +9,7 @@
 1. Navigate to the Project Directory `cd receipt-processor`
 
 ### With Docker
+1. Ensure [Docker](https://docs.docker.com/engine/install/) is installed and running
 1. Project uses [make utility](https://www.gnu.org/software/make/) to manage build and run rules ensure make is installed i.e run `make --version` 
 
 1. Build the Docker Image. Run `make build`
