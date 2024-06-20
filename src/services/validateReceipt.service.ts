@@ -1,3 +1,5 @@
+import { ReceiptItem } from "../interfaces/receipt.interface";
+
 export class ReceiptValidationService {
     // Function to validate if a string is a valid date in YYYY-MM-DD format 
     isValidDate(dateString: string): boolean {
@@ -36,6 +38,16 @@ export class ReceiptValidationService {
         return true
     }
     
+    itemTotal(items: ReceiptItem[]): number{
+        let sumOfPrices: number = 0
+        items.forEach(item => {
+            if(item['price']){
+                sumOfPrices += parseFloat(item['price'])
+            }
+        })
+        return sumOfPrices
+    }
+
     // Function to validate if receipt is valid
     isValidReceipt(receipt: any): boolean {
         if (typeof receipt !== 'object') return false;
@@ -54,6 +66,8 @@ export class ReceiptValidationService {
             if (!price || typeof price !== 'string' || !/^\d+\.\d{2}$/.test(price)) return false;
         }
         if (!receipt['total'] || typeof receipt['total'] !== 'string' || !/^\d+\.\d{2}$/.test(receipt['total'])) return false;
+        
+        if (parseFloat(receipt['total']) !== this.itemTotal(receipt['items'])) return false;
 
         return true;
     }
