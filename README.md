@@ -24,7 +24,7 @@ make run
 
 ## Test the Application
 
-The application should now be running on localhost:3000. You can test the application using the following endpoints:
+The application should now be running on localhost:3000. Test the application using the following endpoints:
 
 ### Process Receipts
 
@@ -39,4 +39,4 @@ The application should now be running on localhost:3000. You can test the applic
 * Method: `GET`
 * Response: A JSON object containing the number of points awarded.
 
-You can use tools like Postman or a web browser to interact with these endpoints on localhost:3000.
+Use tools like Postman to interact with these endpoints on localhost:3000.
