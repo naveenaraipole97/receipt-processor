@@ -5,8 +5,7 @@
   "main": "dist/controllers/receiptProcessor.controller.js",
   "scripts": {
     "build": "tsc",
-    "start": "tsc && node dist/controllers/receiptProcessor.controller.js",
-    "test": "ts-mocha test/**/*.ts"
+    "start": "tsc && node dist/controllers/receiptProcessor.controller.js"
   },
   "repository": {
     "type": "git",
