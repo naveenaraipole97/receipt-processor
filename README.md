@@ -10,7 +10,7 @@ Application is written in [Typescript](https://www.typescriptlang.org/) with [No
 
 ### With Docker
 1. Ensure [Docker](https://docs.docker.com/engine/install/) is installed and running
-1. Project uses [make utility](https://www.gnu.org/software/make/) to manage build and run rules ensure make is installed i.e run `make --version` 
+1. Project uses [make utility](https://www.gnu.org/software/make/) to manage build and run rules, ensure make is installed i.e run `make --version` 
 
 1. Build the Docker Image. Run `make build`
 
